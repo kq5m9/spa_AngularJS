@@ -7,6 +7,7 @@
 
   function countListItems(strList, countEmpties) {
     /* Given a comma separated string, and a boolean as to whether to count empty elements, returns number of elements. */
+    // test code: console.log('args: "'+strList+'" & '+countEmpties);
     // check for empty strList
     if (strList.length === 0) {
       return 0;
@@ -16,7 +17,10 @@
     if (!countEmpties) {
       // replace all consecutive commas with single comma
       str = str.replace(/,+/g, ',');
+      // remove any leading or trailing commas
+      str = str.replace(/(^,)|(,$)/g, "");
     }
+    // test code: console.log('results: ['+str.split(',')+'] -> ' + str.split(',').length);
     return str.split(',').length;
   }
   
