@@ -1,0 +1,15 @@
+.emptyMessage {
+  font-weight: bold;
+  color: red;
+  font-size: 1.2em;
+}
+li.largeLI {
+  margin-bottom: 7px;
+  font-size: 1.2em;
+}
+li.largeLI > button {
+  margin-left: 6px;
+}
+button > span {
+  color: green;
+}
