@@ -7,7 +7,7 @@
 		.controller('NarrowItDownController', NarrowItDownController)
 		.service('MenuSearchService', MenuSearchService)
 		.directive('foundItems',MenuSearchResultDirective)
-		.constant('ApiBasePath', "http://davids-restaurant.herokuapp.com");
+		.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 	
 	
 	// directive to output array of matching menu objects
