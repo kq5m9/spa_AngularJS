@@ -49,13 +49,13 @@
 			/* search.found is now an array of returned matching menu objects */
 			search.found = found;
 			search.loading = false;
-			// test code: console.log(search.found);
+			console.log(search.found); // test code: 
 		};
 		
 		search.removeItem = function (index) {
-			// test code: console.log("removeItem index: ", index);
+			console.log("removeItem index: ", index); // test code: 
 			if (search.found && search.found[index] ) {
-				// test code: console.log(search.found[index]);
+				console.log(search.found[index]); // test code: 
 				search.found.splice(index, 1);
 			}
 		}
@@ -73,7 +73,7 @@
 			return $http({
 				url: (ApiBasePath + "/menu_items.json")
 			}).then(function (response) {
-				// test code: console.log('Sample Description:' + response.data.menu_items[0].description);
+				console.log('Sample Description:' + response.data.menu_items[0].description); // test code: 
 				var dataArray = [];
 				if (response && response.data && response.data.menu_items) {
 					dataArray = response.data.menu_items;
