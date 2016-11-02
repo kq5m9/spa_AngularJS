@@ -14,7 +14,7 @@
   function MenuSearchResultDirective(){
     var ddo = {
           restrict: 'E',
-          templateUrl: 'foundItems.html',
+          templateUrl: 'templates/foundItems.html',
           scope: {
             found: '<',
             onRemove: '&'
@@ -35,17 +35,20 @@
     // initial data
     // NOTE: search.found is initially a positive number to hide 'Nothing found' message
     search.found = 999;
+    search.loading = false;
     search.searchTerm = '';
     
     // methods
     search.update = function (searchTerm) {
       /* call service to return array of matching menu objects wrapped in a promise */
+      search.loading = true;
       MenuSearchService.getMatchedMenuItems(searchTerm).then(search.linkResults);    
     };
     
     search.linkResults = function (found) {
       /* search.found is now an array of returned matching menu objects */
       search.found = found;
+      search.loading = false;
       // test code: console.log(search.found);
     };
     

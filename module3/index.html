@@ -56,7 +56,9 @@
 				</div>
 				
 				<div class="form-group narrow-button">
-					<button class="btn btn-primary" ng-click="search.update(search.searchTerm)">Narrow It Down For Me!</button>
+					<button class="btn btn-primary" ng-click="search.update(search.searchTerm)">
+						<div class="loader" ng-show="search.loading"></div>
+						Narrow It Down For Me!</button>
 				</div><hr>
 
 				<!-- found-items should be implemented as a component -->
@@ -68,7 +70,7 @@
 		<!-- AngularJS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" integrity="sha384-V6/dyDFv85/V/Ktq3ez5B80/c9ZY7jV9c/319rqwNOz3h9CIPdd2Eve0UQBYMMr/" crossorigin="anonymous"></script>
 		<!-- Custom JS -->
-		<script src="script/app.js"></script>
+		<script src="scripts/app.js"></script>
 
 	</body>
 
