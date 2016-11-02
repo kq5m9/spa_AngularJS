@@ -1,85 +1,96 @@
 /*jslint node: true, plusplus: true*/
-/* For explanation of leading semicolon: https://github.com/airbnb/javascript/issues/21 */;
-
+/* For explanation of leading semicolon: https://github.com/airbnb/javascript/issues/21 */
+;
 (function () {
-	'use strict';
-	angular.module('NarrowItDownApp', [])
-				 .controller('NarrowItDownController', NarrowItDownController)
-				 .service('MenuSearchService', MenuSearchService);
-	
-	
-	// controller to manage to buy shopping list       
-	NarrowItDownController.$inject = ['MenuSearchService'];
-	function NarrowItDownController(MenuSearchService) {
-		var toBuyList = this;
-		toBuyList.items = MenuSearchService.getUnboughtItems();
-		toBuyList.buyItem = function (itemIndex) {
-			MenuSearchService.buyItem(itemIndex);
-		};
-	 }
-	
-	
-	function MenuSearchService() {
-		var service = this;
-		
-		// initial data
-		var bought = [], tobuy = [];
-		
-		//Methods
-		service.getMatchedMenuItems(searchTerm) = function () {
-			/*
-			return $http(...).then(function (result) {
-			// process result and only keep items that match
-			var foundItems...
-
-			// return processed items
-			return foundItems;
-			*/ return searchTerm; // temp line
-		});
- 
-		/*
-		service.getBoughtItems = function () {
-			return bought;
-		};
-		service.buyItem = function (itemIndex) {
-			/* moves item at index in shopping list from tobuy to bought. 
-					if index is invalid, no change is made. &/
-			if (itemIndex > -1 && itemIndex < tobuy.length) {
-				// valid index
-				var boughtItem = tobuy[itemIndex];
-				tobuy.splice(itemIndex, 1);
-				bought.push(boughtItem);
-			}
-		};
-		*/
-
-		// Local Routines
-		/*
-		function _itemToString(itemObj) {
-			/* builds a user friendly string representation of an item object &/
-			// if not valid item object, return empty string
-			if (!itemObj || !itemObj.name || !itemObj.quantity || itemObj.quantity < 1) {
-				return '';
-			}
-			// get item components
-			var name = itemObj.name, unit = itemObj.unit, quantity = itemObj.quantity;
-			var noUnit = (unit == '');
-			// pluralize unit, or name if no unit, if quantity > 1
-			if (quantity > 1) {
-				unit += 's';
-				if (noUnit) {
-					name += 's';
-				}
-			}
-			// build outstr as either: num unit(s) of name _or_ num name(s), if no units
-			var outstr = quantity + ' ' + unit + ' of ' + name;
-			if (noUnit) {
-				outstr = quantity + ' ' + name;
-			}
-			return outstr;
-		};
-		*/
-	};
-	
-	
+  'use strict';
+  angular.module('NarrowItDownApp', [])
+    .controller('NarrowItDownController', NarrowItDownController)
+    .service('MenuSearchService', MenuSearchService)
+    .directive('foundItems',MenuSearchResultDirective)
+    .constant('ApiBasePath', "http://davids-restaurant.herokuapp.com");
+  
+  
+  // directive to output array of matching menu objects
+  function MenuSearchResultDirective(){
+    var ddo = {
+          restrict: 'E',
+          templateUrl: 'foundItems.html',
+          scope: {
+            found: '<',
+            onRemove: '&'
+          },
+          controller: NarrowItDownController,
+          controllerAs: 'search',
+          bindToController: true
+    };
+    return ddo;
+  }
+  
+  
+  // controller to manage search interface       
+  NarrowItDownController.$inject = ['MenuSearchService'];
+  function NarrowItDownController(MenuSearchService) {
+    var search = this;
+    
+    // initial data
+    // NOTE: search.found is initially a positive number to hide 'Nothing found' message
+    search.found = 999;
+    search.searchTerm = '';
+    
+    // methods
+    search.update = function (searchTerm) {
+      /* call service to return array of matching menu objects wrapped in a promise */
+      MenuSearchService.getMatchedMenuItems(searchTerm).then(search.linkResults);    
+    };
+    
+    search.linkResults = function (found) {
+      /* search.found is now an array of returned matching menu objects */
+      search.found = found;
+      // test code: console.log(search.found);
+    };
+    
+    search.removeItem = function (index) {
+      // test code: console.log("removeItem index: ", index);
+      if (search.found && search.found[index] ) {
+        // test code: console.log(search.found[index]);
+        search.found.splice(index, 1);
+      }
+    }
+        
+  }
+  
+  
+  // service to retrieve and process menu items from api
+  MenuSearchService.$inject = ['$http', 'ApiBasePath'];
+  function MenuSearchService($http, ApiBasePath) {
+    var service = this;
+    
+    service.getMatchedMenuItems = function (searchTerm) {
+      /* given a searchTerm, retrieve menu items from api & return array of items wrapped in a promise whose description contains the searchTerm. If there is no match, the array will be empty. */
+      return $http({
+        url: (ApiBasePath + "/menu_items.json")
+      }).then(function (response) {
+        // test code: console.log('Sample Description:' + response.data.menu_items[0].description);
+        var dataArray = [];
+        if (response && response.data && response.data.menu_items) {
+          dataArray = response.data.menu_items;
+        }
+        // process result and only keep items that match
+        var foundItems = [];
+        if (dataArray.length > 0 && searchTerm.length > 0) {
+          foundItems = dataArray.filter(
+            function (eleObj) {
+              return eleObj.description.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+            }
+          );
+        }
+        return foundItems;
+      }, function (error) {
+        console.error("DATA RETRIEVAL ERROR:");
+        console.error(error);
+      });
+    }
+  };
+  
+  
 }());
