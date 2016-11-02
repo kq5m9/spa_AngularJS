@@ -34,22 +34,22 @@ input[type="text"] {
 }
 @-webkit-keyframes load8 {
 	0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
 	}
 	100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
 	}
 }
 @keyframes load8 {
 	0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
 	}
 	100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
 	}
 }
 
@@ -58,21 +58,21 @@ input[type="text"] {
 }
 
 .item-display {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .btn-width {
-  width: 120px;
+	width: 120px;
 }
 
 .btn-remove {
-  background: #f62;
-  padding: 1px 7px;
-  font-size: 10px;
+	background: #f62;
+	padding: 1px 7px;
+	font-size: 10px;
 }
 
 .item-name {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 hr {
@@ -92,7 +92,7 @@ hr {
 }
 
 .error-msg {
-  font-weight: bold;
-  font-size: larger;
-  color: crimson;
+	font-weight: bold;
+	font-size: larger;
+	color: crimson;
 }
