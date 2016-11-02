@@ -48,7 +48,7 @@
     search.linkResults = function (found) {
       /* search.found is now an array of returned matching menu objects */
       search.found = found;
-      search.loading = false;
+      //search.loading = false;
       // test code: console.log(search.found);
     };
     
