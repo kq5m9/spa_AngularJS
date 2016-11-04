@@ -1,0 +1,19 @@
+<!-- NOTE: search.found is initially a positive number. The length property of a positive number is evaluated as undefined and, therefore, false. Once a lookup has been completed, search.found is an array. An array is neither '>', '==', nor '<' when compared to a number, but only '!='.   -->
+
+<div class="container item-display" ng-if="search.found.length" ng-repeat="item in search.found">
+	<div class="row">
+		<div class="col-xs-2 btn-width">
+			<button class="btn btn-remove" ng-click="search.onRemove({index: $index});">
+				Don't want this one!</button>
+		</div>
+		<div class="col-xs-10">
+			<span class="item-name">{{item.name}}</span> ({{item.short_name}})
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-2 btn-width"></div>
+		<div class="col-xs-10">{{item.description}}</div>
+	</div>
+</div>
+
+<div class="error-msg" ng-hide="search.found.length || search.found > 0">Nothing found</div>
