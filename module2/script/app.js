@@ -6,34 +6,34 @@
 
 (function () {
   'use strict';
-  angular.module('ShoppingListCheckOff', [])
+  angular.module('categoriesCheckOff', [])
          .controller('ToBuyController', ToBuyController)
          .controller('AlreadyBoughtController', AlreadyBoughtController)
-         .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+         .service('categoriesCheckOffService', categoriesCheckOffService);
   
   
   // controller to manage to_buy shopping list       
-  ToBuyController.$inject = ['ShoppingListCheckOffService'];
-  function ToBuyController(ShoppingListCheckOffService) {
+  ToBuyController.$inject = ['categoriesCheckOffService'];
+  function ToBuyController(categoriesCheckOffService) {
     var toBuyList = this;
-    toBuyList.items = ShoppingListCheckOffService.getUnboughtItems();
+    toBuyList.items = categoriesCheckOffService.getUnboughtItems();
     toBuyList.buyItem = function (itemIndex) {
-      ShoppingListCheckOffService.buyItem(itemIndex);
+      categoriesCheckOffService.buyItem(itemIndex);
     };
    }
 
   
   // controller to manage already_bought shopping list       
-  AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-  function AlreadyBoughtController(ShoppingListCheckOffService) {
+  AlreadyBoughtController.$inject = ['categoriesCheckOffService'];
+  function AlreadyBoughtController(categoriesCheckOffService) {
     var doneList = this;
-    doneList.items = ShoppingListCheckOffService.getBoughtItems();
+    doneList.items = categoriesCheckOffService.getBoughtItems();
   }
   
 
 
   
-  function ShoppingListCheckOffService() {
+  function categoriesCheckOffService() {
     var service = this;
     
     // initial data

@@ -1,0 +1,5 @@
+<ul>
+  <li class="active-link dedent" ng-repeat="category in $ctrl.categories" ui-sref="categories.items({catName: category.short_name})">
+    {{category.name}} ({{category.short_name}})
+  </li>
+</ul>
