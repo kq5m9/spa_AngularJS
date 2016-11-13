@@ -44,6 +44,21 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 		}
 	 })
 
+	// Item detail page (* not yet implemented - but hooked into item list page *)
+	.state('categories.items.item', {
+		/*
+		url: '/{catName}',
+		templateUrl: 'templates/item.template.html',
+		controller: "ItemsController as itemlist",
+		resolve: {
+			items: ['$stateParams', 'MenuDataService', function ($stateParams, MenuDataService) {
+				// test code: console.info('$stateParams.catName: ' + $stateParams.catName);
+				return MenuDataService.getItemsForCategory($stateParams.catName);
+				}]
+		}
+		*/
+	 });
+
  }
 
 })();
