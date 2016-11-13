@@ -4,7 +4,8 @@
 		<li class="tooltip dedent" ng-repeat="item in itemlist.items" 
 				ui-sref="categories.items.item({itemName: item.short_name})">
 			{{item.name}} ({{item.short_name}}) : ${{item.price_large}}
-			<span class="tooltiptext visible-md">{{item.description}}</span>
+			<span ng-if="item.description" class="tooltiptext visible-md">{{item.description}}</span>
+			<span ng-if="!item.description" class="tooltiptext visible-md">No Item Description</span>
 		</li>
 	</ul>
 </div>

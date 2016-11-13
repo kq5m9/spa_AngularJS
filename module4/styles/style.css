@@ -26,6 +26,19 @@ body {
 	margin-left: -20px;
 }
 
+.floatRt {
+	float:right;
+}
+
+.introImg {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.home {
+	display: table-footer-group;
+}
+
 [ui-sref] {
 	font-size: 1.5em;
 }
