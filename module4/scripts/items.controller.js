@@ -2,11 +2,11 @@
 'use strict';
 
 angular.module('MenuApp')
-.controller('ItemController', ItemController);
+.controller('ItemsController', ItemsController);
 
 
-ItemController.$inject = ['$stateParams', 'items'];
-function ItemController($stateParams, items) {
+ItemsController.$inject = ['items'];
+function ItemsController(items) {
 	var itemlist = this;
 	// test code: console.log('ItemController called. items:');
 	// test code: console.log(items);

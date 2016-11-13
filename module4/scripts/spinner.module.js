@@ -5,10 +5,10 @@ angular.module('Spinner', []);
 
 angular.module('Spinner')
 .config(function () {
-  console.log("Spinner config fired.");
+  // test code: console.log("Spinner config fired.");
 }).
 run(function () {
-  console.log("Spinner run fired.");
+  // test code: console.log("Spinner run fired.");
 });
 
 })();

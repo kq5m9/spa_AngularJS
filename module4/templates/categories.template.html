@@ -1,5 +1,17 @@
-<ul>
-  <li class="active-link dedent" ng-repeat="category in $ctrl.categories" ui-sref="categories.items({catName: category.short_name})">
-    {{category.name}} ({{category.short_name}})
-  </li>
-</ul>
+<div class="indent">
+	<a ui-sref="home">Home</a> &lt; 
+	<span>Categories</span>
+</div>
+
+<div class="col-xs-12 col-md-6">
+	<h3>Categories for your dining pleasure...</h3>
+	<ul>
+		<li class="active-link dedent" ng-repeat="category in categoryList.categories" ui-sref="categories.items({catName: category.short_name})">
+			{{category.name}} ({{category.short_name}})
+		</li>
+	</ul>
+</div>
+
+
+
+<ui-view></ui-view>
