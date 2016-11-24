@@ -1,3 +1,6 @@
+/*jslint node: true, plusplus: true*/
+/* For explanation of leading semicolon: https://github.com/airbnb/javascript/issues/21 */
+;
 (function() {
 'use strict';
 
@@ -9,37 +12,37 @@ angular.module('public')
  */
 routeConfig.$inject = ['$stateProvider'];
 function routeConfig ($stateProvider) {
-  // Routes
-  $stateProvider
-    .state('public', {
-      absract: true,
-      templateUrl: 'src/public/public.html'
-    })
-    .state('public.home', {
-      url: '/',
-      templateUrl: 'src/public/home/home.html'
-    })
-    .state('public.menu', {
-      url: '/menu',
-      templateUrl: 'src/public/menu/menu.html',
-      controller: 'MenuController',
-      controllerAs: 'menuCtrl',
-      resolve: {
-        menuCategories: ['MenuService', function (MenuService) {
-          return MenuService.getCategories();
-        }]
-      }
-    })
-    .state('public.menuitems', {
-      url: '/menu/{category}',
-      templateUrl: 'src/public/menu-items/menu-items.html',
-      controller: 'MenuItemsController',
-      controllerAs: 'menuItemsCtrl',
-      resolve: {
-        menuItems: ['$stateParams','MenuService', function ($stateParams, MenuService) {
-          return MenuService.getMenuItems($stateParams.category);
-        }]
-      }
-    });
+	// Routes
+	$stateProvider
+		.state('public', {
+			absract: true,
+			templateUrl: 'src/public/public.html'
+		})
+		.state('public.home', {
+			url: '/',
+			templateUrl: 'src/public/home/home.html'
+		})
+		.state('public.menu', {
+			url: '/menu',
+			templateUrl: 'src/public/menu/menu.html',
+			controller: 'MenuController',
+			controllerAs: 'menuCtrl',
+			resolve: {
+				menuCategories: ['MenuService', function (MenuService) {
+					return MenuService.getCategories();
+				}]
+			}
+		})
+		.state('public.menuitems', {
+			url: '/menu/{category}',
+			templateUrl: 'src/public/menu-items/menu-items.html',
+			controller: 'MenuItemsController',
+			controllerAs: 'menuItemsCtrl',
+			resolve: {
+				menuItems: ['$stateParams','MenuService', function ($stateParams, MenuService) {
+					return MenuService.getMenuItems($stateParams.category);
+				}]
+			}
+		});
 }
-})();
+}());
