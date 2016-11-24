@@ -17,36 +17,36 @@ LoadingHttpInterceptor.$inject = ['$rootScope', '$q'];
  */
 function LoadingHttpInterceptor($rootScope, $q) {
 
-  var loadingCount = 0;
-  var loadingEventName = 'spinner:activate';
+	var loadingCount = 0;
+	var loadingEventName = 'spinner:activate';
 
-  return {
-    request: function (config) {
-      // console.log("Inside interceptor, config: ", config);
+	return {
+		request: function (config) {
+			// console.log("Inside interceptor, config: ", config);
 
-      if (++loadingCount === 1) {
-        $rootScope.$broadcast(loadingEventName, {on: true});
-      }
+			if (++loadingCount === 1) {
+				$rootScope.$broadcast(loadingEventName, {on: true});
+			}
 
-      return config;
-    },
+			return config;
+		},
 
-    response: function (response) {
-      if (--loadingCount === 0) {
-        $rootScope.$broadcast(loadingEventName, {on: false});
-      }
+		response: function (response) {
+			if (--loadingCount === 0) {
+				$rootScope.$broadcast(loadingEventName, {on: false});
+			}
 
-      return response;
-    },
+			return response;
+		},
 
-    responseError: function (response) {
-      if (--loadingCount === 0) {
-        $rootScope.$broadcast(loadingEventName, {on: false});
-      }
+		responseError: function (response) {
+			if (--loadingCount === 0) {
+				$rootScope.$broadcast(loadingEventName, {on: false});
+			}
 
-      return $q.reject(response);
-    }
-  };
+			return $q.reject(response);
+		}
+	};
 }
 
 }());
