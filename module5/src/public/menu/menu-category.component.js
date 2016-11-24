@@ -6,7 +6,7 @@
 
 angular.module('public')
 .component('menuCategory', {
-	templateUrl: 'src/public/menu-category/menu-category.html',
+	templateUrl: 'src/public/menu/menu-category.html',
 	bindings: {
 		category: '<'
 	}

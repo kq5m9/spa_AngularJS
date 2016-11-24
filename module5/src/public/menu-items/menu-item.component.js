@@ -6,7 +6,7 @@
 
 angular.module('public')
 .component('menuItem', {
-	templateUrl: 'src/public/menu-item/menu-item.html',
+	templateUrl: 'src/public/menu-items/menu-item.html',
 	bindings: {
 		menuItem: '<'
 	},
