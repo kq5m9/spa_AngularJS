@@ -37,8 +37,15 @@ function MenuService($http, ApiPath) {
 		});
 	};
 
+	service.getInfo = function () {
+		return $http.get(ApiPath + '/categories.json').then(function (response) {
+			return response.data;
+		}, function (error) {
+			console.error("PERSONAL INFO RETRIEVAL ERROR:");
+			console.error(error);
+		});
+	};
+
 }
-
-
 
 }());
