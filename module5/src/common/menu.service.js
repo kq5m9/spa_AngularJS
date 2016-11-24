@@ -27,8 +27,9 @@ function MenuService($http, ApiPath) {
 		if (category) {
 			config.params = {'category': category};
 		}
-
+		// test code: console.log(config);
 		return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
+			// test code: console.log(response);
 			return response.data;
 		}, function (error) {
 			console.error("ITEM LIST RETRIEVAL ERROR:");
