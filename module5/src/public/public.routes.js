@@ -18,10 +18,12 @@ function routeConfig ($stateProvider) {
 			absract: true,
 			templateUrl: 'src/public/public.html'
 		})
+  
 		.state('public.home', {
 			url: '/',
 			templateUrl: 'src/public/home/home.html'
 		})
+  
 		.state('public.menu', {
 			url: '/menu',
 			templateUrl: 'src/public/menu/menu.html',
@@ -33,6 +35,7 @@ function routeConfig ($stateProvider) {
 				}]
 			}
 		})
+  
 		.state('public.menuitems', {
 			url: '/menu/{category}',
 			templateUrl: 'src/public/menu-items/menu-items.html',
@@ -44,27 +47,19 @@ function routeConfig ($stateProvider) {
 				}]
 			}
 		})
+  
 		.state('public.info', {
 			url: '/info',
-			templateUrl: 'src/public/info/info.html',
+			templateUrl: 'src/public/news/info.html',
 			controller: 'InfoController',
 			controllerAs: 'infoCtrl',
-			resolve: {
-				infoData: ['MenuService', function (MenuService) {
-					return MenuService.getInfo();
-				}]
-			}
 		})
+  
 		.state('public.signup', {
 			url: '/signup',
-			templateUrl: 'src/public/signup/signup.html',
+			templateUrl: 'src/public/news/signup.html',
 			controller: 'SignUpController',
 			controllerAs: 'signUpCtrl'//,
-			//resolve: {
-			//	menuItems: ['$stateParams','MenuService', function ($stateParams, MenuService) {
-			//		return MenuService.getMenuItems($stateParams.category);
-			//	}]
-			//}
 		});
 }
 }());

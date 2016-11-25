@@ -113,6 +113,82 @@ h3.menu-item-title {
 }
 /* END SINGLE CATEGORY PAGE */
 
+/* NEWSLETTER SIGNUP PAGE */
+.userInput {
+  color: black;
+}
+.newsletter .inputForm {
+  margin-top: 40px;
+}
+.inputForm input {
+  margin-top: 6px;
+}
+.required {
+  color: red;
+  text-align: left;
+  margin: 2px 3px 9px 9px;
+  padding: 0;
+}
+.requiredDescr {
+  margin-top: 25px;
+}
+
+.validMsg {
+  color: #fb1;
+  margin-top: 9px;
+  font-weight: bold;
+}
+
+/* placeholder color */
+/* do not group these rules */
+*::-webkit-input-placeholder {
+    color: rgba(255, 0, 0, 0.2);
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: rgba(255, 0, 0, 0.2);
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: rgba(255, 0, 0, 0.2);
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(255, 0, 0, 0.2);
+}
+
+/* END NEWSLETTER SIGNUP PAGE */
+
+/* SHOW INFO PAGE */
+
+.titleLine {
+  margin-bottom: 20px;
+}
+
+.info2signup {
+  margin: 50px;
+}
+
+.info2signup a {
+  color: #fb1;
+  text-decoration: none;
+}
+
+.userLabel {
+  text-align: right;
+  padding: 10px;
+  clear: left;
+}
+.userData {
+  text-align: left;
+  padding: 10px;
+}
+
+.makeChanges {
+  margin: 25px;
+}
+/* END SHOW INFO PAGE */
+
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {
@@ -120,6 +196,7 @@ h3.menu-item-title {
     background: url('../images/jumbotron_1200.jpg') no-repeat;
     height: 675px;
   }
+  
 }
 
 /********** Medium devices only **********/

@@ -1,0 +1,32 @@
+<div class="container">
+	<h2 class="text-center titleLine">Your Information</h2>
+	<div class="text-center">
+    
+    <div class="info2signup" ng-if="!infoCtrl.userData.email">
+      Not Signed Up Yet. 
+      <a ui-sref="public.signup">Sign up Now!</a>
+    </div>
+    
+    <div class="userinfocontainer row" ng-if="infoCtrl.userData.email">
+      <div class="col-xs-12">
+        <span class="userLabel col-xs-offset-1 col-xs-5">Name: </span>
+        <span class="userData col-xs-5">{{infoCtrl.userData.nameStr}}</span>
+      </div>
+      <div class="col-xs-12">
+        <span class="userLabel col-xs-offset-1 col-xs-5">Email: </span>
+        <span class="userData col-xs-5">{{infoCtrl.userData.email | lowercase}}</span>
+      </div><br><br>
+      <div class="col-xs-12">
+        <span class="userLabel col-xs-offset-1 col-xs-5">Phone: </span>
+        <span class="userData col-xs-5">{{infoCtrl.userData.phoneStr}}</span>
+      </div>
+      <div class="col-xs-12">
+        <span class="userLabel col-xs-offset-1 col-xs-5">Favorite Dish: </span>
+        <span class="userData col-xs-5">{{infoCtrl.userData.favorite | uppercase}}</span>
+      </div>
+      <div class="row">
+        <button ui-sref="public.signup" class="btn btn-info makeChanges">Make Changes to Your Infomation</button>
+      </div>
+    </div>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+	<h2 class="text-center titleLine">
+		Sign Up For Our Newsletter
+	</h2>
+	<div class="text-center newsletter">
+    <form class="inputForm row">
+      <label for="name" class="userLabel col-xs-4">Name: </label>
+      <input type="text" name="firstName"placeholder="Firstname"
+             ng-model="signUpCtrl.userData.firstName" 
+             required="required" autofocus="autofocus" 
+             class="userInput col-xs-2" />
+      <input type="text" name="lastName" placeholder="Lastname"
+             ng-model="signUpCtrl.userData.lastName"
+             required="required" class="userInput col-xs-2" />
+      <span class="required col-xs-1">*</span>
+       
+      <label for="email" class="userLabel col-xs-4">Email Address: </label>
+      <input type="email" name="email" placeholder="user@domain.com" 
+             ng-model="signUpCtrl.userData.email"
+             required="required" class="userInput col-xs-4" />
+      <span class="required col-xs-1">*</span>
+      
+      <label for="telephone" class="userLabel col-xs-4">Telephone: </label>
+      <input type="tel" name="phone1" placeholder="123" 
+             ng-model="signUpCtrl.userData.phone1" 
+             class="userInput col-xs-1"/>
+      <input type="tel" name="phone2" placeholder="456" 
+             ng-model="signUpCtrl.userData.phone2" 
+             class="userInput col-xs-1"/>
+      <input type="tel" name="phone3" placeholder="7890" 
+             ng-model="signUpCtrl.userData.phone3" 
+             class="userInput col-xs-1"/>
+       
+      <label for="favorite" class="userLabel col-xs-4">Favorite Dish: </label>
+      <input type="text" name="favorite" placeholder="DK4" 
+             ng-model="signUpCtrl.userData.favorite" 
+             class="userInput text-uppercase col-xs-1"/>
+      
+      <input type="submit" value="Submit" ng-click="signUpCtrl.submit();"
+             class="btn btn-info col-xs-offset-2 col-xs-1 disabled" />
+      
+    </form>
+    
+    <p class="requiredDescr row"><span class="required">*</span> indicates a required field</p>
+    
+    <div class="validMsg row" ng-if="signUpCtrl.valid">Your information has been saved!</div>
+    
+	</div>
+
+</div>
