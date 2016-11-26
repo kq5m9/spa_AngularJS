@@ -155,6 +155,12 @@ input.offScreen {
   width: 1%;
 }
 
+.viewInfo {
+  display: block;
+  margin: 25px 0% 30px 43%;
+}
+
+
 
 /* placeholder color */
 /* do not group these rules */
@@ -183,7 +189,7 @@ input.offScreen {
 }
 
 .info2signup {
-  margin: 50px;
+  margin: 50px 0 50px -140px;
 }
 
 .info2signup a {
@@ -202,7 +208,7 @@ input.offScreen {
 }
 
 .makeChanges {
-  margin: 30px 0 30px -140px;
+  margin: 30px 0 30px -115px;
 }
 /* END SHOW INFO PAGE */
 

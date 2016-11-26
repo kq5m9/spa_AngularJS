@@ -83,7 +83,10 @@
     
     <p class="requiredDescr row"><span class="required">*</span> indicates a required field</p>
     
-    <div class="validMsg row" ng-if="signUpCtrl.submitted">Your information has been saved!</div>
+    <div class="validMsg row" ng-if="signUpCtrl.submitted">
+      Your information has been saved!
+      <button ui-sref="public.info" class="btn btn-info viewInfo">View Your Infomation</button>
+    </div>
 
   </div>
 
