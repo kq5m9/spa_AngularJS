@@ -9,27 +9,33 @@ angular.module('public')
 
 InfoController.$inject = ['DataService'];
 function InfoController(DataService) {
-  var infoCtrl = this;
-  
-  // get local data from service
-  var userData = DataService.getData();
-  
-  // create nameStr and phoneStr to simplify template
-  var nameStr = null, phoneStr = null;
-  if (userData.firstName) {
-    nameStr = userData.firstName + ' ';
-  }
-  if (userData.lastName) {
-    nameStr += userData.lastName;
-  }
-  userData['nameStr'] = nameStr;
-  
- if (userData.phone) {
-    phoneStr = userData.phone.toString().replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
-  }
-  userData['phoneStr'] = phoneStr;
-  
-  console.info('userData: ', userData);
+	var infoCtrl = this;
+	
+	// get local data from service
+	var userData = DataService.getData();
+	
+	
+	infoCtrl.menuItem = userData.favData;
+	
+	
+	
+	
+	// create nameStr and phoneStr to simplify template
+	var nameStr = '', phoneStr = '';
+	if (userData.firstName) {
+		nameStr = userData.firstName + ' ';
+	}
+	if (userData.lastName) {
+		nameStr += userData.lastName;
+	}
+	userData['nameStr'] = nameStr;
+	
+	if (userData.phone) {
+		phoneStr = userData.phone.toString().replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+	}
+	userData['phoneStr'] = phoneStr;
+	
+	// test code: console.info('userData: ', userData);
 	infoCtrl.userData = userData;
 }
 

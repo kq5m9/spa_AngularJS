@@ -37,11 +37,14 @@ function MenuService($http, ApiPath) {
 		});
 	};
 
-	service.getInfo = function () {
-		return $http.get(ApiPath + '/categories.json').then(function (response) {
+	
+	service.getMenuItem = function (shortName) {
+				// test code: console.log(shortName);
+		return $http.get(ApiPath + '/menu_items/' + shortName + '.json').then(function (response) {
+			// test code: console.log(response);
 			return response.data;
 		}, function (error) {
-			console.error("PERSONAL INFO RETRIEVAL ERROR:");
+			console.error("ITEM LIST RETRIEVAL ERROR:");
 			console.error(error);
 		});
 	};

@@ -3,48 +3,88 @@
 		Sign Up For Our Newsletter
 	</h2>
 	<div class="text-center newsletter">
-    <form class="inputForm row">
+    <form class="inputForm row" name="signup" novalidate>
       <label for="name" class="userLabel col-xs-4">Name: </label>
       <input type="text" name="firstName"placeholder="Firstname"
              ng-model="signUpCtrl.userData.firstName" 
-             required="required" autofocus="autofocus" 
+             ng-blur="signUpCtrl.verifyName1();" 
+             required autofocus="autofocus" 
+             ng-pattern="signUpCtrl.noNumbers"
              class="userInput col-xs-2" />
       <input type="text" name="lastName" placeholder="Lastname"
              ng-model="signUpCtrl.userData.lastName"
-             required="required" class="userInput col-xs-2" />
+             ng-blur="signUpCtrl.verifyName2();" 
+             ng-pattern="signUpCtrl.noNumbers"
+             required class="userInput col-xs-2" />
       <span class="required col-xs-1">*</span>
+      <span class="errorMsg" 
+            ng-if="signUpCtrl.nameError 
+                  || (signup.firstName.$touched && signup.firstName.$invalid)
+                  || (signup.lastName.$touched && signup.lastName.$invalid)">
+            Both valid first and last names are required.<br></span>
        
       <label for="email" class="userLabel col-xs-4">Email Address: </label>
       <input type="email" name="email" placeholder="user@domain.com" 
              ng-model="signUpCtrl.userData.email"
              required="required" class="userInput col-xs-4" />
       <span class="required col-xs-1">*</span>
-      
+      <span class="errorMsg" ng-if="(signup.email.$invalid
+                                    || signup.email.$error.required) 
+                                    && signup.email.$touched">
+            A valid email address is required.<br></span>
+     
       <label for="telephone" class="userLabel col-xs-4">Telephone: </label>
-      <input type="tel" name="phone1" placeholder="123" 
+      <input type="text" name="phone0" placeholder="123" 
+             ng-model="signUpCtrl.userData.phone0" 
+             ng-focus="signUpCtrl.setFocusPhone(0);" 
+             ng-blur="signUpCtrl.verifyPhone(0, signup);" 
+             maxlength="3" auto-next ng-pattern="signUpCtrl.onlyNumbers"
+             class="userInput col-xs-1"/>
+      <input type="text" name="phone1" placeholder="456" 
              ng-model="signUpCtrl.userData.phone1" 
+             ng-focus="signUpCtrl.setFocusPhone(1);" 
+             ng-blur="signUpCtrl.verifyPhone(1, signup);" 
+             maxlength="3" auto-next ng-pattern="signUpCtrl.onlyNumbers"
              class="userInput col-xs-1"/>
-      <input type="tel" name="phone2" placeholder="456" 
+      <input type="text" name="phone2" placeholder="7890" 
              ng-model="signUpCtrl.userData.phone2" 
+             ng-focus="signUpCtrl.setFocusPhone(2);" 
+             ng-blur="signUpCtrl.verifyPhone(2, signup);" 
+             maxlength="4" auto-next ng-pattern="signUpCtrl.onlyNumbers"
              class="userInput col-xs-1"/>
-      <input type="tel" name="phone3" placeholder="7890" 
-             ng-model="signUpCtrl.userData.phone3" 
-             class="userInput col-xs-1"/>
-       
+      <input type="text" maxlength="1" class="offScreen"/>
+      <div class="buffer col-xs-2"></div>
+      <span class="errorMsg" 
+            ng-if="signUpCtrl.phoneError || signup.phone0.$invalid 
+                   || signup.phone1.$invalid || signup.phone2.$invalid">
+            If you provide a phone number, please give a full 10 digit number.<br></span>
+      
       <label for="favorite" class="userLabel col-xs-4">Favorite Dish: </label>
       <input type="text" name="favorite" placeholder="DK4" 
              ng-model="signUpCtrl.userData.favorite" 
+             minlength="2" maxlength="4" 
+             ng-pattern="signUpCtrl.favPattern"
+             ng-change="signUpCtrl.FavURLError = false;" 
              class="userInput text-uppercase col-xs-1"/>
+      <div class="buffer col-xs-2"></div>
       
-      <input type="submit" value="Submit" ng-click="signUpCtrl.submit();"
-             class="btn btn-info col-xs-offset-2 col-xs-1 disabled" />
+      <input type="submit" value="Submit" ng-click="signUpCtrl.submit(signup);"
+             ng-disabled="signup.$invalid || signUpCtrl.invalidCount > 0" 
+             class="submitBtn btn btn-info col-xs-1" />
+      <div class="buffer col-xs-1"></div>
       
+     <span class="errorMsg" ng-if="signUpCtrl.FavURLError">
+            No such menu number exists.<br></span>
+
+     <span class="errorMsg" ng-if="signup.favorite.$invalid && signup.favorite.$touched">
+            If you specify a favorite dish, please use the menu item number.<br></span>
+
     </form>
     
     <p class="requiredDescr row"><span class="required">*</span> indicates a required field</p>
     
-    <div class="validMsg row" ng-if="signUpCtrl.valid">Your information has been saved!</div>
-    
-	</div>
+    <div class="validMsg row" ng-if="signUpCtrl.submitted">Your information has been saved!</div>
+
+  </div>
 
 </div>
